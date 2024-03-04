@@ -49,10 +49,6 @@
     "pretest": "npm run prettier:check && npm run eslint",
     "test": "true"
   },
-  "simple-git-hooks": {
-    "pre-commit": "npm exec lint-staged",
-    "commit-msg": "npm exec commitlint -- --edit \"$1\""
-  },
   "commitlint": {
     "extends": "@forsakringskassan/commitlint-config"
   },
