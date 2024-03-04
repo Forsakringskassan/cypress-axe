@@ -1,0 +1,23 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "lib": ["es5", "dom"],
+        "types": ["cypress", "node"],
+        "module": "esnext",
+        "moduleResolution": "node",
+
+        "allowJs": true,
+        "checkJs": false,
+
+        "rootDir": "./src",
+        "declaration": true,
+        "emitDeclarationOnly": true,
+        "outDir": "./dist",
+        "declarationDir": "./temp/types",
+
+        "esModuleInterop": true,
+        "strict": false
+    },
+
+    "include": ["src/**/*.js", "src/**/*.ts"]
+}

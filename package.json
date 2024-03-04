@@ -1,0 +1,91 @@
+{
+  "name": "@forsakringskassancypress-axe",
+  "version": "3.0.4",
+  "description": "Axe injector and executor at the end of cypress tests",
+  "keywords": [
+    "axe",
+    "cypress"
+  ],
+  "homepage": "https://github.com/Forsakringskassan/cypress-axe",
+  "bugs": "https://github.com/Forsakringskassan/cypress-axe/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Forsakringskassan/cypress-axe.git"
+  },
+  "license": "MIT",
+  "author": "Försäkringskassan",
+  "exports": {
+    "./plugins": {
+      "types": "./dist/types/plugins.d.ts",
+      "require": "./dist/cjs/plugins.js",
+      "import": "./dist/esm/plugins.js"
+    },
+    "./support": {
+      "types": "./dist/types/support.d.ts",
+      "require": "./dist/cjs/support.js",
+      "import": "./dist/esm/support.js"
+    }
+  },
+  "main": "dist/cjs/support.js",
+  "files": [
+    "dist",
+    "plugins.js",
+    "plugins.d.ts",
+    "support.js",
+    "support.d.ts"
+  ],
+  "scripts": {
+    "prebuild": "tsc",
+    "build": "rollup -c",
+    "eslint": "eslint .",
+    "eslint:fix": "eslint --fix .",
+    "prepack": "release-prepack package.json --bundle --external:axe-core",
+    "postpack": "release-postpack package.json",
+    "prepare": "husky",
+    "prepublishOnly": "release-prepublish package.json --bundle --external:axe-core",
+    "prettier:check": "prettier --check .",
+    "prettier:write": "prettier --write .",
+    "postpublish": "release-postpublish package.json",
+    "pretest": "npm run prettier:check && npm run eslint",
+    "test": "true"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "npm exec lint-staged",
+    "commit-msg": "npm exec commitlint -- --edit \"$1\""
+  },
+  "commitlint": {
+    "extends": "@forsakringskassan/commitlint-config"
+  },
+  "lint-staged": {
+    "*.{js,json,md,ts}": "prettier --write",
+    "*.{js,ts}": "eslint --fix"
+  },
+  "prettier": "@forsakringskassan/prettier-config",
+  "release": {
+    "extends": "@forsakringskassan/semantic-release-config"
+  },
+  "dependencies": {
+    "axe-core": "4.8.4"
+  },
+  "devDependencies": {
+    "@forsakringskassan/commitlint-config": "1.2.0",
+    "@forsakringskassan/eslint-config": "10.2.0",
+    "@forsakringskassan/eslint-config-cypress": "10.2.0",
+    "@forsakringskassan/eslint-config-typescript": "10.2.0",
+    "@forsakringskassan/prettier-config": "1.4.0",
+    "@html-validate/release-scripts": "6.2.0",
+    "@rollup/plugin-node-resolve": "15.2.3",
+    "@rollup/plugin-typescript": "11.1.6",
+    "@types/node": "16.18.86",
+    "cypress": "13.6.6",
+    "husky": "9.0.11",
+    "lint-staged": "15.2.2",
+    "rollup": "4.12.0",
+    "rollup-plugin-dts": "6.1.0",
+    "typescript": "5.3.3"
+  },
+  "engines": {
+    "node": ">= 16",
+    "npm": ">= 7"
+  }
+}
