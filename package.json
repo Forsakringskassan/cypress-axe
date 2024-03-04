@@ -50,7 +50,7 @@
     "test": "true"
   },
   "commitlint": {
-    "extends": "@forsakringskassan/commitlint-config"
+    "extends": "@forsakringskassan/commitlint-config/no-jira"
   },
   "lint-staged": {
     "*.{js,json,md,ts}": "prettier --write",
