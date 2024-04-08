@@ -61,7 +61,7 @@
     "extends": "@forsakringskassan/semantic-release-config"
   },
   "dependencies": {
-    "axe-core": "4.8.4"
+    "axe-core": "4.9.0"
   },
   "devDependencies": {
     "@forsakringskassan/commitlint-config": "1.2.1",
