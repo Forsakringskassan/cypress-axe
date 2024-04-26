@@ -77,7 +77,7 @@
     "husky": "9.0.11",
     "lint-staged": "15.2.2",
     "npm-pkg-lint": "2.4.1",
-    "rollup": "4.16.2",
+    "rollup": "4.16.3",
     "rollup-plugin-dts": "6.1.0",
     "typescript": "5.4.5"
   },
