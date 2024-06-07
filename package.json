@@ -73,7 +73,7 @@
     "@rollup/plugin-node-resolve": "15.2.3",
     "@rollup/plugin-typescript": "11.1.6",
     "@types/node": "16.18.98",
-    "cypress": "13.10.0",
+    "cypress": "13.11.0",
     "husky": "9.0.11",
     "lint-staged": "15.2.5",
     "npm-pkg-lint": "3.6.1",
