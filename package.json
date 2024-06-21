@@ -72,7 +72,7 @@
     "@html-validate/release-scripts": "6.4.0",
     "@rollup/plugin-node-resolve": "15.2.3",
     "@rollup/plugin-typescript": "11.1.6",
-    "@types/node": "16.18.98",
+    "@types/node": "16.18.99",
     "cypress": "13.11.0",
     "husky": "9.0.11",
     "lint-staged": "15.2.7",
