@@ -70,7 +70,7 @@
     "@forsakringskassan/eslint-config-typescript": "11.4.0",
     "@forsakringskassan/prettier-config": "2.1.1",
     "@html-validate/release-scripts": "6.6.0",
-    "@rollup/plugin-node-resolve": "15.2.3",
+    "@rollup/plugin-node-resolve": "15.2.4",
     "@rollup/plugin-typescript": "11.1.6",
     "@types/node": "16.18.108",
     "cypress": "13.14.2",
