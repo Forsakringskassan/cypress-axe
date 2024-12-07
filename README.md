@@ -11,9 +11,9 @@ För att injicera samt konfigurera plugin:et på rätt sätt krävs att man läg
 
 Om man har `cypress-axe` sen tidigare tar man bort det, kolla i:
 
--   `package.json`
--   `support/index.js`
--   `plugins/index.js`
+- `package.json`
+- `support/index.js`
+- `plugins/index.js`
 
 ### support/index.js
 
