@@ -76,7 +76,7 @@
     "cypress": "13.16.1",
     "husky": "9.1.7",
     "lint-staged": "15.2.11",
-    "npm-pkg-lint": "3.10.5",
+    "npm-pkg-lint": "3.10.6",
     "rollup": "4.28.1",
     "rollup-plugin-dts": "6.1.1",
     "typescript": "5.7.2"
