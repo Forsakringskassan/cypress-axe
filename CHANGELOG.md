@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [3.2.0](https://github.com/Forsakringskassan/cypress-axe/compare/v3.1.5...v3.2.0) (2025-02-07)
+
+### Features
+
+* remove "Notice: [..] violation(s) where found outside/in excluded [..]" message ([3917ffa](https://github.com/Forsakringskassan/cypress-axe/commit/3917ffa20219b78e716f1fd0c1b9899cc175100f))
+
 ## [3.1.5](https://github.com/Forsakringskassan/cypress-axe/compare/v3.1.4...v3.1.5) (2024-11-01)
 
 
