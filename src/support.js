@@ -385,9 +385,6 @@ function processResults(results, config) {
     return {
         enabled: postPass2.enabled,
         disabled: [...postPass1.disabled, ...postPass2.disabled],
-
-        disabledByStandardCount: postPass1.disabled.length,
-        disabledBySelectorCount: postPass2.disabled.length,
     };
 }
 
@@ -430,36 +427,13 @@ function displayViolations(violations, config, withTitle) {
     }
 }
 
-function displayNotices(violations, config) {
-    if (!config.displayViolations) {
-        return;
-    }
-    if (violations.disabledByStandardCount > 0) {
-        nodeLog(
-            Attribute.cyan(
-                `Notice: ${violations.disabledByStandardCount} violation(s) were found outside of the enabled standards.`,
-            ),
-        );
-    }
-    if (violations.disabledBySelectorCount > 0) {
-        nodeLog(
-            Attribute.cyan(
-                `Notice: ${violations.disabledBySelectorCount} violation(s) were found in excluded selectors.`,
-            ),
-        );
-    }
-}
-
 /**
  * @returns {boolean}
  */
 function anythingToDisplay(config, passes, violations) {
     const { displayPasses, displayViolations } = config;
     const numPasses = passes.enabled.length;
-    const numViolations =
-        violations.enabled.length +
-        (violations.disabledByStandardCount || 0) +
-        (violations.disabledBySelectorCount || 0);
+    const numViolations = violations.enabled.length;
     const anyPasses = displayPasses && numPasses > 0;
     const anyViolations = displayViolations && numViolations > 0;
     return anyPasses || anyViolations;
@@ -507,7 +481,6 @@ function runAxe() {
 
                 displayPasses(passes, config);
                 displayViolations(violations, config, true);
-                displayNotices(violations, config);
 
                 // Empty line for clarity
                 nodeLog("");
