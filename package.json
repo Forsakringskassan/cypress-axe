@@ -79,7 +79,7 @@
     "npm-pkg-lint": "3.10.11",
     "rollup": "4.39.0",
     "rollup-plugin-dts": "6.2.1",
-    "typescript": "5.8.2"
+    "typescript": "5.8.3"
   },
   "engines": {
     "node": ">= 16",
