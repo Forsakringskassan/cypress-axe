@@ -67,7 +67,7 @@
     "@forsakringskassan/commitlint-config": "1.4.2",
     "@forsakringskassan/eslint-config": "11.9.3",
     "@forsakringskassan/eslint-config-cypress": "11.9.0",
-    "@forsakringskassan/eslint-config-typescript": "11.9.4",
+    "@forsakringskassan/eslint-config-typescript": "11.9.5",
     "@forsakringskassan/prettier-config": "3.0.5",
     "@html-validate/release-scripts": "6.8.0",
     "@rollup/plugin-node-resolve": "16.0.1",
