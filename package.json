@@ -75,7 +75,7 @@
     "@types/node": "16.18.126",
     "cypress": "14.3.3",
     "husky": "9.1.7",
-    "lint-staged": "15.5.2",
+    "lint-staged": "16.0.0",
     "npm-pkg-lint": "3.10.11",
     "rollup": "4.40.2",
     "rollup-plugin-dts": "6.2.1",
