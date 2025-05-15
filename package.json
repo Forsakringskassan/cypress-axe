@@ -52,10 +52,6 @@
   "commitlint": {
     "extends": "@forsakringskassan/commitlint-config/no-jira"
   },
-  "lint-staged": {
-    "*.{js,json,md,ts}": "prettier --write",
-    "*.{js,ts}": "eslint --fix"
-  },
   "prettier": "@forsakringskassan/prettier-config",
   "release": {
     "extends": "@forsakringskassan/semantic-release-config"
@@ -64,7 +60,7 @@
     "axe-core": "4.10.3"
   },
   "devDependencies": {
-    "@forsakringskassan/commitlint-config": "1.4.2",
+    "@forsakringskassan/commitlint-config": "2.0.1",
     "@forsakringskassan/eslint-config": "11.9.6",
     "@forsakringskassan/eslint-config-cypress": "11.9.0",
     "@forsakringskassan/eslint-config-typescript": "11.9.5",
@@ -75,7 +71,6 @@
     "@types/node": "16.18.126",
     "cypress": "14.3.3",
     "husky": "9.1.7",
-    "lint-staged": "15.5.2",
     "npm-pkg-lint": "3.10.11",
     "rollup": "4.40.2",
     "rollup-plugin-dts": "6.2.1",
