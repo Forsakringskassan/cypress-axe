@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## [4.0.0](https://github.com/Forsakringskassan/cypress-axe/compare/v3.2.1...v4.0.0) (2025-08-25)
+
+### ⚠ BREAKING CHANGES
+
+* **deps:** NodeJS v20 or later is now required.
+
+### Features
+
+* **deps:** require nodejs v20 ([d5cb7d0](https://github.com/Forsakringskassan/cypress-axe/commit/d5cb7d0f8c9e7309130308b28a6f546dbbb96725))
+
 ## [3.2.1](https://github.com/Forsakringskassan/cypress-axe/compare/v3.2.0...v3.2.1) (2025-03-14)
 
 ### Bug Fixes
