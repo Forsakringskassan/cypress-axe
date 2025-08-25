@@ -41,7 +41,6 @@
     "eslint:fix": "eslint --fix .",
     "prepack": "release-prepack package.json --bundle --external:axe-core",
     "postpack": "release-postpack package.json",
-    "prepare": "husky",
     "prepublishOnly": "release-prepublish package.json --bundle --external:axe-core",
     "prettier:check": "prettier --check .",
     "prettier:write": "prettier --write .",
@@ -60,7 +59,7 @@
     "axe-core": "4.10.3"
   },
   "devDependencies": {
-    "@forsakringskassan/commitlint-config": "2.0.5",
+    "@forsakringskassan/commitlint-config": "3.0.3",
     "@forsakringskassan/eslint-config": "12.0.8",
     "@forsakringskassan/eslint-config-cypress": "12.0.2",
     "@forsakringskassan/eslint-config-typescript": "12.0.9",
@@ -70,7 +69,6 @@
     "@rollup/plugin-typescript": "12.1.4",
     "@types/node": "20.19.11",
     "cypress": "15.0.0",
-    "husky": "9.1.7",
     "npm-pkg-lint": "4.0.3",
     "rollup": "4.47.1",
     "rollup-plugin-dts": "6.2.3",
