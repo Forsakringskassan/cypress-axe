@@ -21,6 +21,7 @@ jobs:
             - name: ESLint
               if: success() || failure()
               run: npm run eslint
+
     npm-pkg-lint:
         runs-on: ubuntu-latest
         steps:
@@ -31,5 +32,3 @@ jobs:
               run: npm ci
             - name: npm-pkg-lint
               uses: ext/npm-pkg-lint@master
-              with:
-                  ignore-node-version: 16
