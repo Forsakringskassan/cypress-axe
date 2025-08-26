@@ -70,7 +70,7 @@
     "@types/node": "20.19.11",
     "cypress": "15.0.0",
     "npm-pkg-lint": "4.0.3",
-    "rollup": "4.47.1",
+    "rollup": "4.48.0",
     "rollup-plugin-dts": "6.2.3",
     "typescript": "5.9.2"
   },
