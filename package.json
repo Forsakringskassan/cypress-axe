@@ -68,7 +68,7 @@
     "@rollup/plugin-node-resolve": "16.0.1",
     "@rollup/plugin-typescript": "12.1.4",
     "@types/node": "20.19.13",
-    "cypress": "15.1.0",
+    "cypress": "15.2.0",
     "npm-pkg-lint": "4.0.4",
     "rollup": "4.50.1",
     "rollup-plugin-dts": "6.2.3",
