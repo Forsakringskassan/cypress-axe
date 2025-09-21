@@ -31,7 +31,7 @@ export function init(on, config) {
     try {
         const localConfig = fs.readFileSync("fk-cypress-axe.json").toString();
         config.env[envName] = localConfig;
-    } catch (err) {
+    } catch {
         // ... No file found, use default configuration (handled in support)
     }
 
