@@ -1,5 +1,5 @@
-import { createRequire } from "node:module";
 import fs from "fs";
+import { createRequire } from "node:module";
 import { envName } from "./constants";
 
 // Plugin specific task events

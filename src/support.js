@@ -1,5 +1,5 @@
-import { envName } from "./constants";
 import { defaultConfig } from "./config";
+import { envName } from "./constants";
 
 const Attribute = {
     ColorCodes: {
