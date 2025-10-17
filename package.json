@@ -1,6 +1,6 @@
 {
   "name": "@forsakringskassan/cypress-axe",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "Axe injector and executor at the end of cypress tests",
   "keywords": [
     "axe",
