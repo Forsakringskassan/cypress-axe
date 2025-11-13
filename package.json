@@ -71,7 +71,7 @@
     "@types/node": "20.19.24",
     "cypress": "15.6.0",
     "npm-pkg-lint": "4.3.0",
-    "rollup": "4.53.1",
+    "rollup": "4.53.2",
     "rollup-plugin-dts": "6.2.3",
     "typescript": "5.9.3"
   },
