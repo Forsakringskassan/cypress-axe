@@ -68,7 +68,7 @@
     "@html-validate/release-scripts": "7.1.0",
     "@rollup/plugin-node-resolve": "16.0.3",
     "@rollup/plugin-typescript": "12.3.0",
-    "@types/node": "20.19.28",
+    "@types/node": "20.19.29",
     "cypress": "15.8.2",
     "npm-pkg-lint": "4.3.1",
     "rollup": "4.55.1",
