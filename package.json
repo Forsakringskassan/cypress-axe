@@ -60,8 +60,8 @@
   },
   "devDependencies": {
     "@forsakringskassan/commitlint-config": "3.3.3",
-    "@forsakringskassan/eslint-config": "13.2.10",
-    "@forsakringskassan/eslint-config-cypress": "13.2.10",
+    "@forsakringskassan/eslint-config": "13.2.12",
+    "@forsakringskassan/eslint-config-cypress": "13.2.12",
     "@forsakringskassan/eslint-config-typescript": "13.2.11",
     "@forsakringskassan/eslint-config-typescript-typeinfo": "13.2.11",
     "@forsakringskassan/prettier-config": "3.3.2",
