@@ -60,7 +60,7 @@
   },
   "devDependencies": {
     "@forsakringskassan/commitlint-config": "3.3.3",
-    "@forsakringskassan/eslint-config": "13.3.0",
+    "@forsakringskassan/eslint-config": "13.3.1",
     "@forsakringskassan/eslint-config-cypress": "13.3.0",
     "@forsakringskassan/eslint-config-typescript": "13.3.0",
     "@forsakringskassan/eslint-config-typescript-typeinfo": "13.3.0",
