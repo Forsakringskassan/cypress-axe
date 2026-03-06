@@ -3,19 +3,19 @@ import { envName } from "./constants";
 
 const Attribute = {
     ColorCodes: {
-        red: "\x1b[31m",
-        grey: "\x1b[37m",
-        white: "\x1b[37;1m",
-        normalColor: "\x1b[39m",
+        red: "\u001b[31m",
+        grey: "\u001b[37m",
+        white: "\u001b[37;1m",
+        normalColor: "\u001b[39m",
         indent: "",
-        green: "\x1b[32m",
-        yellow: "\x1b[33m",
-        magenta: "\x1b[35m",
-        cyan: "\x1b[36m",
-        resetColor: "\x1b[0m",
-        bold: "\x1b[1m",
-        underline: "\x1b[4m",
-        reversed: "\x1b[7m",
+        green: "\u001b[32m",
+        yellow: "\u001b[33m",
+        magenta: "\u001b[35m",
+        cyan: "\u001b[36m",
+        resetColor: "\u001b[0m",
+        bold: "\u001b[1m",
+        underline: "\u001b[4m",
+        reversed: "\u001b[7m",
     },
 
     red(message) {
@@ -76,7 +76,7 @@ function validateConfig(config) {
 
     // Report fields that are not present in the default
     for (const [key] of Object.entries(config)) {
-        if (typeof defaultConfig[key] === "undefined") {
+        if (defaultConfig[key] === undefined) {
             errors.push(
                 `- The field "${key}" is not a valid configuration option.`,
             );
@@ -95,15 +95,15 @@ function validateConfig(config) {
     }
 
     // Print all accumulated config errors
-    if (errors.length) {
+    if (errors.length > 0) {
         nodeLog(
             Attribute.reversed(
                 Attribute.red(`Invalid fk-cypress-axe configuration!`),
             ),
         );
-        errors.forEach((error) => {
+        for (const error of errors) {
             nodeLog(Attribute.red(error));
-        });
+        }
         nodeLog(
             Attribute.red(
                 `As a result, some tests may be omitted or displayed when they shouldn't be!`,
@@ -181,9 +181,7 @@ function filterResultsByStandardTags(results, standardTags) {
 
     // Returns true if tag matches any of the given standard tags
     const isStandardTag = (tag) => {
-        return standardTags.some((standardTag) => {
-            return tag === standardTag;
-        });
+        return standardTags.includes(tag);
     };
 
     filteredResults.enabled = results.filter((result) => {
@@ -206,9 +204,7 @@ function filterResultsByExcludedSelectors(results, excludedSelectors) {
 
     // Returns true if selector matches any of the excluded selectors
     const isExcluded = (selector) => {
-        return excludedSelectors.some((excludedSelector) => {
-            return selector === excludedSelector;
-        });
+        return excludedSelectors.includes(selector);
     };
 
     filteredResults.enabled = results.filter((result) => {
@@ -260,16 +256,14 @@ function formatTarget(target) {
     });
 }
 
+// Returns true if tag matches any of the given standard tags
+const isStandardTag = (tag) => {
+    const config = getConfig();
+    return config.standardsToReport.includes(tag);
+};
+
 function formatTags(tags) {
     return tags.reduce((msg, tag) => {
-        // Returns true if tag matches any of the given standard tags
-        const isStandardTag = (tag) => {
-            const config = getConfig();
-            return config.standardsToReport.some((standardTag) => {
-                return tag === standardTag;
-            });
-        };
-
         if (isStandardTag(tag)) {
             return `${msg}, ${Attribute.green(tag)}`;
         } else {
@@ -393,9 +387,9 @@ function displayPasses(passes, config) {
         return;
     }
 
-    passes.enabled.forEach((pass) => {
+    for (const pass of passes.enabled) {
         printPass(pass, config);
-    });
+    }
 }
 
 function displayViolations(violations, config, withTitle) {
@@ -416,12 +410,12 @@ function displayViolations(violations, config, withTitle) {
             );
         }
 
-        violations.enabled.forEach((violation) => {
+        for (const violation of violations.enabled) {
             printViolation(violation, config);
             if (config.displayContext) {
                 displayContext(violation, config);
             }
-        });
+        }
     } else {
         nodeLog(Attribute.green(`\tAll enabled tests passed!`));
     }
@@ -507,7 +501,7 @@ function removeDuplicates(results) {
     let finalResults = JSON.parse(JSON.stringify(results));
 
     // Gather all nodes under one result
-    finalResults.forEach((result, index) => {
+    for (const [index, result] of finalResults.entries()) {
         const foundIndex = finalResults.findIndex((v) => {
             return v.help === result.help;
         });
@@ -518,7 +512,7 @@ function removeDuplicates(results) {
             ].nodes.concat(result.nodes);
             finalResults[index].toBeRemoved = true;
         }
-    });
+    }
 
     // Remove duplicate results
     finalResults = finalResults.filter((result) => {
@@ -526,8 +520,8 @@ function removeDuplicates(results) {
     });
 
     // Remove duplicate nodes
-    finalResults.forEach((result) => {
-        result.nodes.forEach((node, index) => {
+    for (const result of finalResults) {
+        for (const [index, node] of result.nodes.entries()) {
             const foundIndex = result.nodes.findIndex((n) => {
                 return n.html === node.html;
             });
@@ -535,12 +529,12 @@ function removeDuplicates(results) {
             if (foundIndex !== index) {
                 result.nodes[index].toBeRemoved = true;
             }
-        });
+        }
 
         result.nodes = result.nodes.filter((n) => {
             return !n.toBeRemoved;
         });
-    });
+    }
 
     return finalResults;
 }
