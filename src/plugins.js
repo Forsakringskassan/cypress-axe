@@ -1,4 +1,4 @@
-import fs from "fs";
+import fs from "node:fs";
 import { createRequire } from "node:module";
 import { envName } from "./constants";
 
@@ -13,7 +13,7 @@ const tasks = {
     axeGetInjectorSource() {
         const require = createRequire(import.meta.url);
         const scriptPath = require.resolve("axe-core/axe.min.js");
-        return fs.readFileSync(scriptPath, "utf-8");
+        return fs.readFileSync(scriptPath, "utf8");
     },
 };
 
