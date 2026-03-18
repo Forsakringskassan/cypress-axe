@@ -73,6 +73,7 @@
     "npm-pkg-lint": "4.4.2",
     "rollup": "4.59.0",
     "rollup-plugin-dts": "6.4.0",
+    "tslib": "2.8.1",
     "typescript": "5.9.3"
   },
   "engines": {
