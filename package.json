@@ -17,13 +17,13 @@
   "exports": {
     "./plugins": {
       "types": "./dist/types/plugins.d.ts",
-      "require": "./dist/cjs/plugins.js",
-      "import": "./dist/esm/plugins.js"
+      "import": "./dist/esm/plugins.js",
+      "require": "./dist/cjs/plugins.js"
     },
     "./support": {
       "types": "./dist/types/support.d.ts",
-      "require": "./dist/cjs/support.js",
-      "import": "./dist/esm/support.js"
+      "import": "./dist/esm/support.js",
+      "require": "./dist/cjs/support.js"
     }
   },
   "main": "dist/cjs/support.js",
@@ -70,7 +70,7 @@
     "@rollup/plugin-typescript": "12.3.0",
     "@types/node": "20.19.37",
     "cypress": "15.12.0",
-    "npm-pkg-lint": "4.4.2",
+    "npm-pkg-lint": "4.5.0",
     "rollup": "4.59.0",
     "rollup-plugin-dts": "6.4.0",
     "tslib": "2.8.1",
