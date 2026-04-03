@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [4.0.3](https://github.com/Forsakringskassan/cypress-axe/compare/v4.0.2...v4.0.3) (2026-04-03)
+
+### Bug Fixes
+
+* **deps:** update dependency axe-core to v4.11.2 ([7d90ca3](https://github.com/Forsakringskassan/cypress-axe/commit/7d90ca317ccaa5153485f6a5a4d41d210afccb75))
+
 ## [4.0.2](https://github.com/Forsakringskassan/cypress-axe/compare/v4.0.1...v4.0.2) (2026-01-16)
 
 ### Bug Fixes
