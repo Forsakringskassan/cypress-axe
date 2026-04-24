@@ -61,9 +61,9 @@
   "devDependencies": {
     "@forsakringskassan/commitlint-config": "3.3.11",
     "@forsakringskassan/eslint-config": "14.1.14",
-    "@forsakringskassan/eslint-config-cypress": "14.1.12",
-    "@forsakringskassan/eslint-config-typescript": "14.1.10",
-    "@forsakringskassan/eslint-config-typescript-typeinfo": "14.1.10",
+    "@forsakringskassan/eslint-config-cypress": "14.1.15",
+    "@forsakringskassan/eslint-config-typescript": "14.1.15",
+    "@forsakringskassan/eslint-config-typescript-typeinfo": "14.1.15",
     "@forsakringskassan/prettier-config": "3.3.9",
     "@html-validate/release-scripts": "7.1.19",
     "@rollup/plugin-node-resolve": "16.0.3",
