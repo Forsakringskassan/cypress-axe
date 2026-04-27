@@ -65,7 +65,7 @@
     "@forsakringskassan/eslint-config-typescript": "14.1.15",
     "@forsakringskassan/eslint-config-typescript-typeinfo": "14.1.15",
     "@forsakringskassan/prettier-config": "3.3.9",
-    "@html-validate/release-scripts": "7.1.19",
+    "@html-validate/release-scripts": "7.1.20",
     "@rollup/plugin-node-resolve": "16.0.3",
     "@rollup/plugin-typescript": "12.3.0",
     "@types/node": "20.19.39",
