@@ -62,7 +62,7 @@ module.exports = (on, config) => {
 
 ## Konfiguration
 
-Konfigurationen av plugin:et görs i `fk-cypress-axe.json` i root-katalogen.
+Konfigurationen av plugin:et görs i `fk-cypress-axe.{mjs,json}` i root-katalogen.
 
 Basinställningarna ser ut som följande:
 
