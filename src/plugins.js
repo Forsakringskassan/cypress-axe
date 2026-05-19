@@ -1,6 +1,9 @@
 import fs from "node:fs";
 import { createRequire } from "node:module";
+import path from "node:path";
 import { envName } from "./constants";
+
+const require = createRequire(import.meta.url);
 
 // Plugin specific task events
 const tasks = {
@@ -11,7 +14,6 @@ const tasks = {
         return null;
     },
     axeGetInjectorSource() {
-        const require = createRequire(import.meta.url);
         const scriptPath = require.resolve("axe-core/axe.min.js");
         return fs.readFileSync(scriptPath, "utf8");
     },
@@ -28,6 +30,14 @@ export function init(on, config) {
 
     // Load plugin configuration
     // [Workaround] Cannot store deep structures in config object => Store entire json file as environment variable
+    const mjsPath = path.join(process.cwd(), "fk-cypress-axe.mjs");
+
+    if (fs.existsSync(mjsPath)) {
+        /* eslint-disable-next-line import/no-dynamic-require -- path is constructed from cwd */
+        const mjsModule = require(mjsPath);
+        config.env[envName] = JSON.stringify(mjsModule.default ?? mjsModule);
+    }
+
     try {
         const localConfig = fs.readFileSync("fk-cypress-axe.json").toString();
         config.env[envName] = localConfig;
