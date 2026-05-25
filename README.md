@@ -20,7 +20,7 @@ Om man har `cypress-axe` sen tidigare tar man bort det, kolla i:
 Lägg till följande någonstans i filen
 
 ```javascript
-import "fk-cypress-axe/support";
+import "@forsakringskassan/cypress-axe/support";
 ```
 
 ### plugins/index.js
@@ -28,7 +28,7 @@ import "fk-cypress-axe/support";
 Lägg till följande i toppen av filen
 
 ```javascript
-const fkcyaxe = require("fk-cypress-axe/plugins");
+const fkcyaxe = require("@forsakringskassan/cypress-axe/plugins");
 ```
 
 Om det inte redan finns en `module.exports = (on, config) => { ... }` pilfunktion, lägg då till denna.
@@ -47,7 +47,7 @@ return config;
 Filen kan exempelvis då se ut som följande:
 
 ```javascript
-const fkcyaxe = require("fk-cypress-axe/plugins");
+const fkcyaxe = require("@forsakringskassan/cypress-axe/plugins");
 
 module.exports = (on, config) => {
     // ...
@@ -62,7 +62,7 @@ module.exports = (on, config) => {
 
 ## Konfiguration
 
-Konfigurationen av plugin:et görs i `fk-cypress-axe.json` i root-katalogen.
+Konfigurationen av plugin:et görs i `@forsakringskassan/cypress-axe.json` i root-katalogen.
 
 Basinställningarna ser ut som följande:
 
@@ -90,7 +90,7 @@ Basinställningarna ser ut som följande:
 }
 ```
 
-Genom att fylla i en lokal `fk-cypress-axe.json` kan man alltså skriva över enskilda inställningar i denna filen.
+Genom att fylla i en lokal `@forsakringskassan/cypress-axe.json` kan man alltså skriva över enskilda inställningar i denna filen.
 Resterande fält diff:as mot basinställningarna.
 
 **OBS:** Vissa inställningar diff:as ej, nämligen inställningarna som finns i `axe.rules`.
@@ -101,7 +101,7 @@ Dvs. om man i sin lokala konfiguration ändrar `'color-contrast'` regeln på nå
 Utöver `excludeSelectorsList` kan man använda `context` för att ange vad som ska inkluderas och exkluderas.
 Detta påverkar vilka element som axe kör på iställer för filtrering i efterhand.
 
-`fk-cypress-axe.json`:
+`@forsakringskassan/cypress-axe.json`:
 
 ```json
 {
@@ -120,7 +120,7 @@ Detta görs genom att tidigt i spec filen lägga till följande kodstycke.
 
 ```javascript
 before(() => {
-    // Retrieves the current configuration used by fk-cypress-axe.
+    // Retrieves the current configuration used by @forsakringskassan/cypress-axe.
     cy.getAxeConfigThisFile().then((config) => {
         // Make your changes here, for example, the following is a valid change
         config.excludeSelectorsList = [".secret-menu"];
