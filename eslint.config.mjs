@@ -31,4 +31,12 @@ export default [
             ecmaVersion: 2024,
         },
     }),
+
+    {
+        name: "allow console.log",
+        files: ["test-server/**/*.ts", "vitest.global.ts"],
+        rules: {
+            "no-console": "off",
+        },
+    },
 ];
