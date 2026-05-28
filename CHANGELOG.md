@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## [5.0.0](https://github.com/Forsakringskassan/cypress-axe/compare/v4.0.5...v5.0.0) (2026-05-28)
+
+### ⚠ BREAKING CHANGES
+
+* **deps:** needs Node 22 or later to run.
+
+### Features
+
+* **deps:** drop Node 20 support ([75b421c](https://github.com/Forsakringskassan/cypress-axe/commit/75b421c2079fe4d71fdd2543464ec839e3fc791d))
+
 ## [4.0.5](https://github.com/Forsakringskassan/cypress-axe/compare/v4.0.4...v4.0.5) (2026-05-02)
 
 ### Bug Fixes
