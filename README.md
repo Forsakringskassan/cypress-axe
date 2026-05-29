@@ -62,7 +62,7 @@ module.exports = (on, config) => {
 
 ## Konfiguration
 
-Konfigurationen av plugin:et görs i `@forsakringskassan/cypress-axe.json` i root-katalogen.
+Konfigurationen av plugin:et görs i `fk-cypress-axe.json` i root-katalogen.
 
 Basinställningarna ser ut som följande:
 
@@ -90,7 +90,7 @@ Basinställningarna ser ut som följande:
 }
 ```
 
-Genom att fylla i en lokal `@forsakringskassan/cypress-axe.json` kan man alltså skriva över enskilda inställningar i denna filen.
+Genom att fylla i en lokal `fk-cypress-axe.json` kan man alltså skriva över enskilda inställningar i denna filen.
 Resterande fält diff:as mot basinställningarna.
 
 **OBS:** Vissa inställningar diff:as ej, nämligen inställningarna som finns i `axe.rules`.
@@ -101,7 +101,7 @@ Dvs. om man i sin lokala konfiguration ändrar `'color-contrast'` regeln på nå
 Utöver `excludeSelectorsList` kan man använda `context` för att ange vad som ska inkluderas och exkluderas.
 Detta påverkar vilka element som axe kör på iställer för filtrering i efterhand.
 
-`@forsakringskassan/cypress-axe.json`:
+`fk-cypress-axe.json`:
 
 ```json
 {
