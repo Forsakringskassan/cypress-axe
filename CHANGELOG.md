@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [5.1.0](https://github.com/Forsakringskassan/cypress-axe/compare/v5.0.0...v5.1.0) (2026-06-01)
+
+### Features
+
+* pass config from your cypress configuration ([388b153](https://github.com/Forsakringskassan/cypress-axe/commit/388b153f9a648b1fa151dc989d5affe589c11deb))
+
 ## [5.0.0](https://github.com/Forsakringskassan/cypress-axe/compare/v4.0.5...v5.0.0) (2026-05-28)
 
 ### ⚠ BREAKING CHANGES
