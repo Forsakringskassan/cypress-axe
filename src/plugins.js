@@ -28,15 +28,14 @@ export function init(on, config, userOptions = undefined) {
     on("task", tasks);
 
     // Load plugin configuration
-    // [Workaround] Cannot store deep structures in config object => Store entire json file as environment variable
     if (userOptions !== undefined) {
-        config.env[envName] = JSON.stringify(userOptions);
+        config.expose[envName] = userOptions;
         return config;
     }
 
     try {
         const localConfig = fs.readFileSync("fk-cypress-axe.json").toString();
-        config.env[envName] = localConfig;
+        config.expose[envName] = JSON.parse(localConfig);
     } catch {
         // ... No file found, use default configuration (handled in support)
     }

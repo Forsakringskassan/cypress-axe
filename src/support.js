@@ -114,12 +114,12 @@ function validateConfig(config) {
 
 // Retrieves the local configuration (diffed (selectively) against the default).
 function getConfig() {
-    const localConfig = Cypress.env(envName);
+    const localConfig = Cypress.expose(envName);
     if (!localConfig) {
         return defaultConfig;
     }
 
-    const parsedConfig = JSON.parse(localConfig);
+    const parsedConfig = localConfig;
     const finalConfig = { ...defaultConfig, ...parsedConfig };
 
     if (parsedConfig.axe) {
@@ -545,7 +545,7 @@ Cypress.Commands.add("getAxeConfigThisFile", () => {
 });
 
 Cypress.Commands.add("setAxeConfigThisFile", (userConfig) => {
-    Cypress.env(envName, JSON.stringify(userConfig));
+    Cypress.expose(envName, JSON.stringify(userConfig));
     return cy.wrap(userConfig);
 });
 
