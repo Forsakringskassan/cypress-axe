@@ -62,9 +62,45 @@ module.exports = (on, config) => {
 
 ## Konfiguration
 
-Konfigurationen av plugin:et görs i `fk-cypress-axe.json` i root-katalogen.
+Konfiguration kan antingen skickas in vid init i `cypress.config.ts` eller via separat JSON-fil.
 
-Basinställningarna ser ut som följande:
+`cypress.config.ts`
+
+```ts
+import { defineConfig } from "cypress";
+import { init as installAxe } from "@forsakringskassan/cypress-axe/plugins";
+
+const axeOptions = {
+    "context": {
+        "include": [["#app"]],
+        "exclude": [[".selector1"], [".selector2"], ["..."]]
+    }
+}
+
+export default defineConfig({
+    allowCypressEnv: true,
+
+    e2e: {
+        ...
+        setupNodeEvents(on, config) {
+            return installAxe(on, config, axeOptions);
+        },
+    },
+});
+```
+
+`fk-cypress-axe.json`
+
+```json
+{
+    "context": {
+        "include": [["#app"]],
+        "exclude": [[".selector1"], [".selector2"], ["..."]]
+    }
+}
+```
+
+## Basinställning
 
 ```javascript
 {
@@ -100,8 +136,6 @@ Dvs. om man i sin lokala konfiguration ändrar `'color-contrast'` regeln på nå
 
 Utöver `excludeSelectorsList` kan man använda `context` för att ange vad som ska inkluderas och exkluderas.
 Detta påverkar vilka element som axe kör på iställer för filtrering i efterhand.
-
-`fk-cypress-axe.json`:
 
 ```json
 {
