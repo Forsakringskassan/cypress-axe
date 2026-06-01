@@ -18,6 +18,34 @@ afterEach(async () => {
     await fs.rm(TMP_DIR, { recursive: true, force: true });
 });
 
+async function generateCypressConfig(
+    fkAxeJson: Record<string, unknown>,
+): Promise<void> {
+    const cypressConfigFile = `
+
+import { defineConfig } from "cypress";
+import { init as installAxe } from "@forsakringskassan/cypress-axe/plugins";
+
+const PORT: number = Number.parseInt(
+    process.env.FK_AXE_SERVER_PORT ?? "8080",
+    10,
+);
+
+export default defineConfig({
+    allowCypressEnv: true,
+
+    e2e: {
+        baseUrl: \`http://localhost:\${PORT}\`,
+        setupNodeEvents(on, config) {
+            return installAxe(on, config, ${JSON.stringify(fkAxeJson)});
+        },
+    },
+});
+        `;
+
+    await fs.writeFile(`${TMP_DIR}/cypress.config.ts`, cypressConfigFile);
+}
+
 async function runCypressSpec(
     specFile: string,
 ): Promise<CypressCommandLine.CypressRunResult> {
@@ -75,6 +103,34 @@ describe("Configuration with JSON file", () => {
             `${TMP_DIR}/fk-cypress-axe.json`,
             JSON.stringify(fkAxeJson, null, 2),
         );
+
+        const result = await runCypressSpec("cypress/e2e/invalid-block.cy.ts");
+        expect(result.totalFailed).toBe(1);
+    });
+});
+
+describe("Configuration in cypress.config", () => {
+    it("should pass since we only check a valid block", async () => {
+        const fkAxeJson = {
+            context: {
+                include: [[".valid-block"]],
+            },
+        };
+
+        await generateCypressConfig(fkAxeJson);
+
+        const result = await runCypressSpec("cypress/e2e/invalid-block.cy.ts");
+        expect(result.totalFailed).toBe(0);
+    });
+
+    it("should fail since we check a invalid block", async () => {
+        const fkAxeJson = {
+            context: {
+                include: [[".invalid-block"]],
+            },
+        };
+
+        await generateCypressConfig(fkAxeJson);
 
         const result = await runCypressSpec("cypress/e2e/invalid-block.cy.ts");
         expect(result.totalFailed).toBe(1);

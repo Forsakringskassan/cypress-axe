@@ -20,14 +20,20 @@ const tasks = {
 /**
  * @template T
  * @param {T} config
+ * @param {any} userOptions
  * @returns {T}
  */
-export function init(on, config) {
+export function init(on, config, userOptions = undefined) {
     // Registers plugin-specific task events
     on("task", tasks);
 
     // Load plugin configuration
     // [Workaround] Cannot store deep structures in config object => Store entire json file as environment variable
+    if (userOptions !== undefined) {
+        config.env[envName] = JSON.stringify(userOptions);
+        return config;
+    }
+
     try {
         const localConfig = fs.readFileSync("fk-cypress-axe.json").toString();
         config.env[envName] = localConfig;
