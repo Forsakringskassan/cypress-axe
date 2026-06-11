@@ -7,7 +7,7 @@ const PORT: number = Number.parseInt(
 );
 
 export default defineConfig({
-    allowCypressEnv: true,
+    allowCypressEnv: false,
 
     e2e: {
         baseUrl: `http://localhost:${PORT}`,

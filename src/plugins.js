@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import { createRequire } from "node:module";
-import { envName } from "./constants";
+
+let localConfig = null;
 
 // Plugin specific task events
 const tasks = {
@@ -15,6 +16,9 @@ const tasks = {
         const scriptPath = require.resolve("axe-core/axe.min.js");
         return fs.readFileSync(scriptPath, "utf8");
     },
+    getLocalConfig() {
+        return localConfig;
+    },
 };
 
 /**
@@ -28,15 +32,17 @@ export function init(on, config, userOptions = undefined) {
     on("task", tasks);
 
     // Load plugin configuration
-    // [Workaround] Cannot store deep structures in config object => Store entire json file as environment variable
     if (userOptions !== undefined) {
-        config.env[envName] = JSON.stringify(userOptions);
+        localConfig = userOptions;
         return config;
     }
 
     try {
-        const localConfig = fs.readFileSync("fk-cypress-axe.json").toString();
-        config.env[envName] = localConfig;
+        localConfig = JSON.parse(
+            fs.readFileSync("fk-cypress-axe.json", {
+                encoding: "utf8",
+            }),
+        );
     } catch {
         // ... No file found, use default configuration (handled in support)
     }

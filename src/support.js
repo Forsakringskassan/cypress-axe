@@ -1,5 +1,4 @@
 import { defaultConfig } from "./config";
-import { envName } from "./constants";
 
 const Attribute = {
     ColorCodes: {
@@ -49,6 +48,8 @@ const Attribute = {
         return `${this.ColorCodes.reversed}${message}${this.ColorCodes.resetColor}`;
     },
 };
+
+let cachedLocalConfig = null;
 
 // Used to create the summary
 const globalResults = {
@@ -114,28 +115,27 @@ function validateConfig(config) {
 
 // Retrieves the local configuration (diffed (selectively) against the default).
 function getConfig() {
-    const localConfig = Cypress.env(envName);
+    const localConfig = cachedLocalConfig;
     if (!localConfig) {
         return defaultConfig;
     }
 
-    const parsedConfig = JSON.parse(localConfig);
-    const finalConfig = { ...defaultConfig, ...parsedConfig };
+    const finalConfig = { ...defaultConfig, ...localConfig };
 
-    if (parsedConfig.axe) {
+    if (localConfig.axe) {
         finalConfig.axe = {
             ...defaultConfig.axe,
-            ...parsedConfig.axe,
+            ...localConfig.axe,
         };
 
-        if (parsedConfig.axe.rules) {
+        if (localConfig.axe.rules) {
             finalConfig.axe.rules = [
                 ...defaultConfig.axe.rules.filter((defaultRule) => {
-                    return !parsedConfig.axe.rules.some((parsedRule) => {
+                    return !localConfig.axe.rules.some((parsedRule) => {
                         return parsedRule.id === defaultRule.id;
                     });
                 }),
-                ...parsedConfig.axe.rules,
+                ...localConfig.axe.rules,
             ];
         }
     }
@@ -545,8 +545,14 @@ Cypress.Commands.add("getAxeConfigThisFile", () => {
 });
 
 Cypress.Commands.add("setAxeConfigThisFile", (userConfig) => {
-    Cypress.env(envName, JSON.stringify(userConfig));
+    cachedLocalConfig = userConfig;
     return cy.wrap(userConfig);
+});
+
+before(() => {
+    cy.task("getLocalConfig", null, { log: false }).then((config) => {
+        cachedLocalConfig = config;
+    });
 });
 
 afterEach(() => {
