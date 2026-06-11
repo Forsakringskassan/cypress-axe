@@ -78,8 +78,6 @@ const axeOptions = {
 }
 
 export default defineConfig({
-    allowCypressEnv: true,
-
     e2e: {
         ...
         setupNodeEvents(on, config) {
