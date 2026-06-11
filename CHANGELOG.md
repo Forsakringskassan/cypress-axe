@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [5.1.2](https://github.com/Forsakringskassan/cypress-axe/compare/v5.1.1...v5.1.2) (2026-06-11)
+
+### Bug Fixes
+
+* remove usage of deprecated Cypress.env ([7ab6b04](https://github.com/Forsakringskassan/cypress-axe/commit/7ab6b04a6e418bd6cd19d9b3fc4c7800fe105df3))
+
 ## [5.1.1](https://github.com/Forsakringskassan/cypress-axe/compare/v5.1.0...v5.1.1) (2026-06-05)
 
 ### Bug Fixes
