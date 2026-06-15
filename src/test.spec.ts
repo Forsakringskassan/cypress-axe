@@ -136,3 +136,10 @@ describe("Configuration in cypress.config", () => {
         expect(result.totalFailed).toBe(1);
     });
 });
+
+describe("Manually running axe command", () => {
+    it("All sub tests should pass (Tests itself is verifying that the markup is valid or not)", async () => {
+        const result = await runCypressSpec("cypress/e2e/axe-command.cy.ts");
+        expect(result.totalFailed).toBe(0);
+    });
+});

@@ -4,10 +4,16 @@ Ett cypress plugin för att automatiskt köra axe tester.
 
 Plugin:et placerar och utför valideringskontroller för tillgänglighet i slutet av varje cypress test.
 
-## Installation / Användning
+## Användning
 
 Plugin:et placerar automatiskt diverse valideringscheckar efter varje cypress mha. ett vanligt `afterEach` block i Cypress.
 För att injicera samt konfigurera plugin:et på rätt sätt krävs att man lägger till följande kodstycken i sin `support/index.js` samt `plugins/index.js`.
+
+### Manuell validering
+
+Du kan också mitt i ett test köra `cy.axe()` för att kontrollera att aktuell markup är giltig. Användningsområdet kan exempelvis vara om du vill validera ett element (tex modal) som visas men som inte finns kvar när afterEach körs.
+
+## Installation
 
 Om man har `cypress-axe` sen tidigare tar man bort det, kolla i:
 
