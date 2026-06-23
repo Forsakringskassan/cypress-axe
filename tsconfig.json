@@ -22,6 +22,7 @@
     "include": [
         "src/**/*.js",
         "src/**/*.ts",
+        "types/**/*.ts",
         "vitest.config.ts",
         "vitest.global.ts",
         "cypress.config.ts"

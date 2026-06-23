@@ -47,7 +47,7 @@ export default [
     buildLib({ format: "cjs" }),
     buildLib({ format: "esm" }),
     {
-        input: ["temp/types/src/support.d.ts"],
+        input: ["types/support.d.ts"],
         output: {
             file: "dist/types/support.d.ts",
             format: "esm",
