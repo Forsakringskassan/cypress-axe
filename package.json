@@ -29,6 +29,7 @@
   "main": "dist/cjs/support.js",
   "files": [
     "dist",
+    "types",
     "plugins.js",
     "plugins.d.ts",
     "support.js",
@@ -47,7 +48,8 @@
     "prettier:write": "prettier --write .",
     "postpublish": "release-postpublish package.json",
     "pretest": "npm run prettier:check && npm run eslint",
-    "test": "vitest run"
+    "test": "vitest run",
+    "test-watch": "vitest --watch"
   },
   "commitlint": {
     "extends": "@forsakringskassan/commitlint-config/no-jira"

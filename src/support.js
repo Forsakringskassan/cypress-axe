@@ -400,7 +400,7 @@ function displayViolations(violations, config, withTitle) {
     if (violations.enabled.length > 0) {
         if (withTitle) {
             const testName =
-                Cypress.mocha.getRunner().suite.ctx.currentTest.title;
+                Cypress.mocha.getRunner()?.suite?.ctx?.currentTest?.title ?? "";
             nodeLog(
                 Attribute.red(
                     `\t[${violations.enabled.length} Accessibility violation(s) were detected after `,
@@ -549,6 +549,23 @@ Cypress.Commands.add("setAxeConfigThisFile", (userConfig) => {
     return cy.wrap(userConfig);
 });
 
+Cypress.Commands.add("enableAxeFailures", () => {
+    const config = getConfig();
+    config.ignoreAxeFailures = false;
+    cachedLocalConfig = config;
+});
+
+Cypress.Commands.add("disableAxeFailures", () => {
+    const config = getConfig();
+    config.ignoreAxeFailures = true;
+    cachedLocalConfig = config;
+});
+
+Cypress.Commands.add("axe", () => {
+    prepareAxe();
+    runAxe();
+});
+
 before(() => {
     cy.task("getLocalConfig", null, { log: false }).then((config) => {
         cachedLocalConfig = config;
@@ -556,8 +573,7 @@ before(() => {
 });
 
 afterEach(() => {
-    prepareAxe();
-    runAxe();
+    cy.axe();
 });
 
 after(() => {

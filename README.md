@@ -4,18 +4,24 @@ Ett cypress plugin för att automatiskt köra axe tester.
 
 Plugin:et placerar och utför valideringskontroller för tillgänglighet i slutet av varje cypress test.
 
-## Installation / Användning
+## Användning
 
 Plugin:et placerar automatiskt diverse valideringscheckar efter varje cypress mha. ett vanligt `afterEach` block i Cypress.
-För att injicera samt konfigurera plugin:et på rätt sätt krävs att man lägger till följande kodstycken i sin `support/index.js` samt `plugins/index.js`.
+För att injicera samt konfigurera plugin:et på rätt sätt för installationsanvisningarna.
+
+### Manuell validering
+
+Du kan också mitt i ett test köra `cy.axe()` för att kontrollera att aktuell markup är giltig. Användningsområdet kan exempelvis vara om du vill validera ett element (tex modal) som visas men som inte finns kvar när afterEach körs.
+
+## Installation
 
 Om man har `cypress-axe` sen tidigare tar man bort det, kolla i:
 
 - `package.json`
-- `support/index.js`
-- `plugins/index.js`
+- `cypress/support/(component|e2e|common).(js|ts)`
+- `cypress.config.(js|ts)`
 
-### support/index.js
+### cypress/support/(component|e2e|common).(js|ts)
 
 Lägg till följande någonstans i filen
 
@@ -23,41 +29,46 @@ Lägg till följande någonstans i filen
 import "@forsakringskassan/cypress-axe/support";
 ```
 
-### plugins/index.js
+### cypress.config.(js|ts)
 
 Lägg till följande i toppen av filen
 
 ```javascript
-const fkcyaxe = require("@forsakringskassan/cypress-axe/plugins");
+import { init as installAxe } from "@forsakringskassan/cypress-axe/plugins";
 ```
 
-Om det inte redan finns en `module.exports = (on, config) => { ... }` pilfunktion, lägg då till denna.
-Notera att både `on` och `config` behövs.
+Placera därefter registreringen av plugin under:
 
 ```javascript
-config = fkcyaxe.init(on, config);
+e2e: {
+    setupNodeEvents(on, config) {
+        config = installAxe(on, config);
+        return config;
+    }
+}
 ```
 
-Ovanstående rad modifierar cypress konfigurationen, därför är det sedan också viktigt att pilfunktionen returnerar det slutgiltiga `config` objektet
+och / eller
 
 ```javascript
-return config;
+component: {
+    setupNodeEvents(on, config) {
+        config = installAxe(on, config);
+        return config;
+    }
+}
 ```
 
-Filen kan exempelvis då se ut som följande:
+### Typer types/support.d.ts
 
-```javascript
-const fkcyaxe = require("@forsakringskassan/cypress-axe/plugins");
+För att komma åt typningen av Cypress kommandon likt `cy.axe()` så behöver man uppdatera tsconfig.json under Cypress katalogen.
 
-module.exports = (on, config) => {
-    // ...
-
-    config = fkcyaxe.init(on, config);
-
-    // ...
-
-    return config;
-};
+```json
+    "compilerOptions": {
+        "types": [
+            "@forsakringskassan/cypress-axe/support"
+        ],
+    }
 ```
 
 ## Konfiguration

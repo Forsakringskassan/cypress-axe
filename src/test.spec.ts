@@ -61,20 +61,6 @@ async function runCypressSpec(
     return result;
 }
 
-describe("Cypress E2E Tester via Vitest", () => {
-    it("should pass the tests in validPage.spec.ts", async () => {
-        const result = await runCypressSpec("cypress/e2e/valid-page.cy.ts");
-        expect(result.totalFailed).toBe(0);
-        expect(result.totalTests).toBeGreaterThan(0);
-    });
-
-    it("should fail the tests in invalidPage.spec.ts", async () => {
-        const result = await runCypressSpec("cypress/e2e/invalid-page.cy.ts");
-        expect(result.totalFailed).toBe(1);
-        expect(result.totalTests).toBeGreaterThan(0);
-    });
-});
-
 describe("Configuration with JSON file", () => {
     it("should pass since we only check a valid block", async () => {
         const fkAxeJson = {
@@ -134,5 +120,13 @@ describe("Configuration in cypress.config", () => {
 
         const result = await runCypressSpec("cypress/e2e/invalid-block.cy.ts");
         expect(result.totalFailed).toBe(1);
+    });
+});
+
+describe("Manually running using axe and cypress axe commands", () => {
+    it("All sub tests should pass (tests itself is verifying that the markup is valid or not)", async () => {
+        const result = await runCypressSpec("cypress/e2e/axe-command.cy.ts");
+        expect(result.totalFailed).toBe(0);
+        expect(result.totalTests).toBeGreaterThan(0);
     });
 });
