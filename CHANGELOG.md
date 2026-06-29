@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## [5.1.4](https://github.com/Forsakringskassan/cypress-axe/compare/v5.1.3...v5.1.4) (2026-06-29)
+
+### Bug Fixes
+
+* adding cypress axe commands (refs SFKUI-6500) ([c6ab05d](https://github.com/Forsakringskassan/cypress-axe/commit/c6ab05defe8fdb259ce9a15a12b021fa0a14fe8e))
+
 ## [5.1.3](https://github.com/Forsakringskassan/cypress-axe/compare/v5.1.2...v5.1.3) (2026-06-13)
 
 ### Bug Fixes
