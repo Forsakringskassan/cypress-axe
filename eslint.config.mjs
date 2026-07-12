@@ -33,6 +33,14 @@ export default [
     }),
 
     {
+        name: "local",
+        rules: {
+            /* false positives on cypress promise-like objects which does not support await */
+            "unicorn/prefer-await": "off",
+        },
+    },
+
+    {
         name: "allow console.log",
         files: ["test-server/**/*.ts", "vitest.global.ts"],
         rules: {

@@ -2,19 +2,19 @@ import { defaultConfig } from "./config";
 
 const Attribute = {
     ColorCodes: {
-        red: "\u001b[31m",
-        grey: "\u001b[37m",
-        white: "\u001b[37;1m",
-        normalColor: "\u001b[39m",
+        red: "\u{1B}[31m",
+        grey: "\u{1B}[37m",
+        white: "\u{1B}[37;1m",
+        normalColor: "\u{1B}[39m",
         indent: "",
-        green: "\u001b[32m",
-        yellow: "\u001b[33m",
-        magenta: "\u001b[35m",
-        cyan: "\u001b[36m",
-        resetColor: "\u001b[0m",
-        bold: "\u001b[1m",
-        underline: "\u001b[4m",
-        reversed: "\u001b[7m",
+        green: "\u{1B}[32m",
+        yellow: "\u{1B}[33m",
+        magenta: "\u{1B}[35m",
+        cyan: "\u{1B}[36m",
+        resetColor: "\u{1B}[0m",
+        bold: "\u{1B}[1m",
+        underline: "\u{1B}[4m",
+        reversed: "\u{1B}[7m",
     },
 
     red(message) {
@@ -76,7 +76,7 @@ function validateConfig(config) {
     const errors = [];
 
     // Report fields that are not present in the default
-    for (const [key] of Object.entries(config)) {
+    for (const key of Object.keys(config)) {
         if (defaultConfig[key] === undefined) {
             errors.push(
                 `- The field "${key}" is not a valid configuration option.`,
@@ -131,8 +131,8 @@ function getConfig() {
         if (localConfig.axe.rules) {
             finalConfig.axe.rules = [
                 ...defaultConfig.axe.rules.filter((defaultRule) => {
-                    return !localConfig.axe.rules.some((parsedRule) => {
-                        return parsedRule.id === defaultRule.id;
+                    return localConfig.axe.rules.every((parsedRule) => {
+                        return parsedRule.id !== defaultRule.id;
                     });
                 }),
                 ...localConfig.axe.rules,
@@ -266,9 +266,8 @@ function formatTags(tags) {
     return tags.reduce((msg, tag) => {
         if (isStandardTag(tag)) {
             return `${msg}, ${Attribute.green(tag)}`;
-        } else {
-            return `${msg}, ${tag}`;
         }
+        return `${msg}, ${tag}`;
     });
 }
 
@@ -296,16 +295,18 @@ function displayContext(violation, config) {
 
         let withBullet = true;
         for (const [key, value] of Object.entries(context)) {
-            if (config.displayContext === true) {
-                printContextField(key, value, withBullet);
-                withBullet = false;
+            if (config.displayContext !== true) {
+                continue;
             }
+
+            printContextField(key, value, withBullet);
+            withBullet = false;
         }
 
         const log = Cypress.log({
             name: `(${violation.impact}) ACCESSIBILITY VIOLATION`,
             consoleProps: () => context,
-            message: `${violation.help}`,
+            message: violation.help,
         });
 
         // Append element to previous log. This causes the affected element to be highlighted.
@@ -599,8 +600,8 @@ after(() => {
         // For the summary we want to only display passes that have never failed in any individual test.
         globalResults.passes.enabled = globalResults.passes.enabled.filter(
             (pass) => {
-                return !globalResults.violations.enabled.some((violation) => {
-                    return pass.id === violation.id;
+                return globalResults.violations.enabled.every((violation) => {
+                    return pass.id !== violation.id;
                 });
             },
         );

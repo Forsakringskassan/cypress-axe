@@ -1,10 +1,7 @@
 import { defineConfig } from "cypress";
 import { init as installAxe } from "@forsakringskassan/cypress-axe/plugins";
 
-const PORT: number = Number.parseInt(
-    process.env.FK_AXE_SERVER_PORT ?? "8080",
-    10,
-);
+const PORT: number = Number(process.env.FK_AXE_SERVER_PORT ?? "8080");
 
 export default defineConfig({
     allowCypressEnv: false,

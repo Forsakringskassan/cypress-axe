@@ -3,7 +3,7 @@ import cypress from "cypress";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 const TMP_DIR = "./temp/cypress-e2e";
-const DEFAULT_CYPRESS_TIMEOUT = 60000;
+const DEFAULT_CYPRESS_TIMEOUT = 60_000;
 
 vi.setConfig({ testTimeout: DEFAULT_CYPRESS_TIMEOUT });
 
