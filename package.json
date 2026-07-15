@@ -73,7 +73,7 @@
     "@rollup/plugin-typescript": "12.3.0",
     "@types/node": "22.20.1",
     "cypress": "15.18.1",
-    "npm-pkg-lint": "5.1.10",
+    "npm-pkg-lint": "5.1.11",
     "rollup": "4.62.2",
     "rollup-plugin-dts": "6.4.1",
     "tslib": "2.8.1",
