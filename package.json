@@ -62,7 +62,7 @@
     "axe-core": "4.13.0"
   },
   "devDependencies": {
-    "@forsakringskassan/commitlint-config": "4.2.7",
+    "@forsakringskassan/commitlint-config": "4.2.8",
     "@forsakringskassan/eslint-config": "15.8.7",
     "@forsakringskassan/eslint-config-cypress": "15.8.4",
     "@forsakringskassan/eslint-config-typescript": "15.8.4",
