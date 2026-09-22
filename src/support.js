@@ -96,21 +96,23 @@ function validateConfig(config) {
     }
 
     // Print all accumulated config errors
-    if (errors.length > 0) {
-        nodeLog(
-            Attribute.reversed(
-                Attribute.red(`Invalid fk-cypress-axe configuration!`),
-            ),
-        );
-        for (const error of errors) {
-            nodeLog(Attribute.red(error));
-        }
-        nodeLog(
-            Attribute.red(
-                `As a result, some tests may be omitted or displayed when they shouldn't be!`,
-            ),
-        );
+    if (errors.length === 0) {
+        return;
     }
+
+    nodeLog(
+        Attribute.reversed(
+            Attribute.red(`Invalid fk-cypress-axe configuration!`),
+        ),
+    );
+    for (const error of errors) {
+        nodeLog(Attribute.red(error));
+    }
+    nodeLog(
+        Attribute.red(
+            `As a result, some tests may be omitted or displayed when they shouldn't be!`,
+        ),
+    );
 }
 
 // Retrieves the local configuration (diffed (selectively) against the default).
@@ -507,12 +509,14 @@ function removeDuplicates(results) {
             return v.help === result.help;
         });
 
-        if (foundIndex !== index) {
-            finalResults[foundIndex].nodes = finalResults[
-                foundIndex
-            ].nodes.concat(result.nodes);
-            finalResults[index].toBeRemoved = true;
+        if (foundIndex === index) {
+            continue;
         }
+
+        finalResults[foundIndex].nodes = finalResults[foundIndex].nodes.concat(
+            result.nodes,
+        );
+        finalResults[index].toBeRemoved = true;
     }
 
     // Remove duplicate results
@@ -583,40 +587,44 @@ after(() => {
     const displayNow =
         config.displayWhen === "end" || config.displayWhen === "both";
 
-    if (config.ignoreAxeFailures === false && displayNow) {
-        globalResults.passes.enabled = removeDuplicates(
-            globalResults.passes.enabled,
-        );
-        globalResults.passes.disabled = removeDuplicates(
-            globalResults.passes.disabled,
-        );
-        globalResults.violations.enabled = removeDuplicates(
-            globalResults.violations.enabled,
-        );
-        globalResults.violations.disabled = removeDuplicates(
-            globalResults.violations.disabled,
-        );
-
-        // For the summary we want to only display passes that have never failed in any individual test.
-        globalResults.passes.enabled = globalResults.passes.enabled.filter(
-            (pass) => {
-                return globalResults.violations.enabled.every((violation) => {
-                    return pass.id !== violation.id;
-                });
-            },
-        );
-
-        const { passes, violations } = globalResults;
-        if (anythingToDisplay(config, passes, violations)) {
-            nodeLog(
-                Attribute.reversed(
-                    Attribute.yellow(
-                        "---------------Accessibility Summary----------------",
-                    ),
-                ),
-            );
-            displayPasses(passes, config);
-            displayViolations(violations, config, false);
-        }
+    if (config.ignoreAxeFailures || !displayNow) {
+        return;
     }
+
+    globalResults.passes.enabled = removeDuplicates(
+        globalResults.passes.enabled,
+    );
+    globalResults.passes.disabled = removeDuplicates(
+        globalResults.passes.disabled,
+    );
+    globalResults.violations.enabled = removeDuplicates(
+        globalResults.violations.enabled,
+    );
+    globalResults.violations.disabled = removeDuplicates(
+        globalResults.violations.disabled,
+    );
+
+    // For the summary we want to only display passes that have never failed in any individual test.
+    globalResults.passes.enabled = globalResults.passes.enabled.filter(
+        (pass) => {
+            return globalResults.violations.enabled.every((violation) => {
+                return pass.id !== violation.id;
+            });
+        },
+    );
+
+    const { passes, violations } = globalResults;
+    if (!anythingToDisplay(config, passes, violations)) {
+        return;
+    }
+
+    nodeLog(
+        Attribute.reversed(
+            Attribute.yellow(
+                "---------------Accessibility Summary----------------",
+            ),
+        ),
+    );
+    displayPasses(passes, config);
+    displayViolations(violations, config, false);
 });
