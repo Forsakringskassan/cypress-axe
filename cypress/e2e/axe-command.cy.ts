@@ -8,6 +8,11 @@ describe("Valid Page Accessibility", () => {
         cy.axe();
     });
 
+    it("should restore a frozen clock before the automatic axe check", () => {
+        cy.clock(Date.UTC(2024, 0, 1));
+        cy.visit("/valid-page.html");
+    });
+
     it("should not pass an invalid page", () => {
         let failing = 0;
 

@@ -571,6 +571,17 @@ Cypress.Commands.add("axe", () => {
     runAxe();
 });
 
+function restoreClock() {
+    const clock = cy.state("clock");
+
+    if (!clock) {
+        return;
+    }
+
+    clock.restore();
+    cy.state("clock", null);
+}
+
 before(() => {
     cy.task("getLocalConfig", null, { log: false }).then((config) => {
         cachedLocalConfig = config;
@@ -578,6 +589,7 @@ before(() => {
 });
 
 afterEach(() => {
+    restoreClock();
     cy.axe();
 });
 
