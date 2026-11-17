@@ -79,7 +79,7 @@
     "@types/node": "22.20.5",
     "@typescript/native": "npm:typescript@7.0.2",
     "cypress": "16.3.0",
-    "npm-pkg-lint": "5.4.1",
+    "npm-pkg-lint": "5.4.2",
     "rollup": "4.68.3",
     "rollup-plugin-dts": "6.5.1",
     "tslib": "2.9.1",
